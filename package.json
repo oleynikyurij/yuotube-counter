@@ -1,0 +1,29 @@
+{
+  "name": "yuotube-counter",
+  "version": "1.0.0",
+  "description": "youtube subscribers count",
+  "main": "index.js",
+  "scripts": {
+    "watch": "./node_modules/.bin/babel src --out-dir dist --presets=@babel/env -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oleynikyurij/yuotube-counter.git"
+  },
+  "keywords": [
+    "youtube",
+    "subscribers",
+    "count"
+  ],
+  "author": "Yurij Oleynik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oleynikyurij/yuotube-counter/issues"
+  },
+  "homepage": "https://github.com/oleynikyurij/yuotube-counter#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0"
+  }
+}
