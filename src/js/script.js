@@ -14,10 +14,25 @@ let httpClient = function httpClient () {
 
  let client = new httpClient();
 
+ let idChanel = 'UC_x5XG1OV2P6uZZ5FSM9Ttw';
+ let part = 'statistics,brandingSettings';
+
+ let nameChannel = document.querySelector('#nameChannel');
+ let descriptionChannel = document.querySelector('#descriptionChannel');
+ let imageChannel = document.querySelector('#imageChannel');
+ let countChannel = document.querySelector('#count');
+
+
  let showStat = () => {
-	 client.get('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC_x5XG1OV2P6uZZ5FSM9Ttw&key=AIzaSyAT6jSrSXneZIpYACljCNlF65ym37kZqIg', (response) => {
-		console.log( JSON.parse( response).items[0].statistics.subscriberCount);
-		document.querySelector('#count').innerText = JSON.parse( response).items[0].statistics.subscriberCount;
+	 client.get(`https://www.googleapis.com/youtube/v3/channels?part=${part}&id=${idChanel}&key=AIzaSyAT6jSrSXneZIpYACljCNlF65ym37kZqIg`, (response) => {
+		console.log( JSON.parse( response).items[0]);
+
+		let info = JSON.parse( response).items[0];
+		
+		nameChannel.innerText = info.brandingSettings.channel.title;
+		descriptionChannel.innerText = info.brandingSettings.channel.description;
+		countChannel.innerText = info.statistics.subscriberCount;
+		imageChannel.src = info.brandingSettings.image.bannerImageUrl;
 	 });
  };
 
