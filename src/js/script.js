@@ -22,9 +22,11 @@ let httpClient = function httpClient () {
  let imageChannel = document.querySelector('#imageChannel');
  let countChannel = document.querySelector('#count');
 
+ let form = document.querySelector('#form');
 
- let showStat = () => {
-	 client.get(`https://www.googleapis.com/youtube/v3/channels?part=${part}&id=${idChanel}&key=AIzaSyAT6jSrSXneZIpYACljCNlF65ym37kZqIg`, (response) => {
+
+ let showStat = (id) => {
+	 client.get(`https://www.googleapis.com/youtube/v3/channels?part=${part}&id=${id}&key=AIzaSyAT6jSrSXneZIpYACljCNlF65ym37kZqIg`, (response) => {
 		console.log( JSON.parse( response).items[0]);
 
 		let info = JSON.parse( response).items[0];
@@ -36,6 +38,21 @@ let httpClient = function httpClient () {
 	 });
  };
 
- showStat();
+ let searchChannel = (name) => {
+		client.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResults=1&q=${name}&key=AIzaSyAT6jSrSXneZIpYACljCNlF65ym37kZqIg`, (response) => {
+			let info = JSON.parse( response).items[0].snippet.channelId;
+			console.log(info);
+			showStat(info);
+		});
+ };
+
+ form.addEventListener('submit', (e)=> {
+	e.preventDefault();
+	let search = document.querySelector('#searchChannel').value;
+	console.log(search);
+	searchChannel(search);
+ });
+
+ showStat(idChanel);
 
 
